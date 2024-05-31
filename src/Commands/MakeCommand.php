@@ -6,5 +6,4 @@ use Illuminate\Console\Command;
 
 class MakeCommand extends Command
 {
-
 }

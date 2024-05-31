@@ -3,8 +3,8 @@
 namespace ArtisanBuild\Bench\Commands;
 
 use Illuminate\Console\Command;
-
 use Illuminate\Support\Facades\File;
+
 use function Laravel\Prompts\text;
 
 class InstallCommand extends Command
@@ -29,9 +29,6 @@ class InstallCommand extends Command
         );
 
         File::ensureDirectoryExists(base_path($bench));
-
-
-
 
         return self::SUCCESS;
     }

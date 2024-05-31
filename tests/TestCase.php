@@ -2,9 +2,9 @@
 
 namespace ArtisanBuild\Bench\Tests;
 
+use ArtisanBuild\Bench\BenchServiceProvider;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Orchestra\Testbench\TestCase as Orchestra;
-use ArtisanBuild\Bench\BenchServiceProvider;
 
 class TestCase extends Orchestra
 {

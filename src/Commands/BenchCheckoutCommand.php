@@ -12,6 +12,7 @@ class BenchCheckoutCommand extends Command
     use WorksWithPackages;
 
     public $signature = 'bench:checkout {package?}';
+
     public $description = 'Check out a package from GitHub and put it on the workbench';
 
     public function handle(): int
@@ -22,10 +23,9 @@ class BenchCheckoutCommand extends Command
                 options: $this->getPackages(),
                 default: '',
                 required: true,
-                validate: fn() => true
+                validate: fn () => true
             );
+
         return self::SUCCESS;
     }
-
-
 }

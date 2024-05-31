@@ -7,7 +7,6 @@ use Illuminate\Console\Command;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Process;
 
-
 class TestCommand extends Command
 {
     public $signature = 'bench:test {package?}';
@@ -17,12 +16,11 @@ class TestCommand extends Command
     public function handle()
     {
         $packages = $this->argument('package') === null ?
-            glob(config('bench.bench_directory') . '/*', GLOB_ONLYDIR)
+            glob(config('bench.bench_directory').'/*', GLOB_ONLYDIR)
             : Arr::wrap(implode('/', [config('bench.bench_directory'), $this->argument('package')]));
 
-
         foreach ($packages as $package) {
-            if (!file_exists("{$package}/composer.json")) {
+            if (! file_exists("{$package}/composer.json")) {
                 continue;
             }
 
@@ -32,7 +30,7 @@ class TestCommand extends Command
                 continue;
             }
 
-            app(InDirectory::class)($package, function() {
+            app(InDirectory::class)($package, function () {
                 Process::tty()->run('composer test');
             });
         }
