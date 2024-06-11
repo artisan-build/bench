@@ -2,6 +2,7 @@
 
 namespace ArtisanBuild\Bench\Commands;
 
+use ArtisanBuild\Support\CurrentEnvironment\EnsureIgnored;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\File;
 
@@ -29,6 +30,8 @@ class InstallCommand extends Command
         );
 
         File::ensureDirectoryExists(base_path($bench));
+
+        app(EnsureIgnored::class)('/'.trim($bench, '/'));
 
         return self::SUCCESS;
     }

@@ -4,7 +4,9 @@
     "keywords": [
         "Artisan Build",
         "laravel",
-        "bench"
+        "bench",
+        "packages",
+        "composer"
     ],
     "homepage": "https://github.com/artisan-build/bench",
     "license": "MIT",
@@ -39,7 +41,10 @@
         "psr-4": {
             "ArtisanBuild\\Bench\\": "src/",
             "ArtisanBuild\\Bench\\Database\\Factories\\": "database/factories/"
-        }
+        },
+        "files": [
+            "src/Functions.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": {
