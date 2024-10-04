@@ -1,10 +1,18 @@
 <?php
 
+declare(strict_types=1);
+
 namespace ArtisanBuild\Bench;
 
-use ArtisanBuild\Bench\Commands\BenchCheckoutCommand;
-use ArtisanBuild\Bench\Commands\InstallCommand;
-use ArtisanBuild\Bench\Commands\TestCommand;
+use ArtisanBuild\Bench\Console\Commands\Commit;
+use ArtisanBuild\Bench\Console\Commands\FreshCommand;
+use ArtisanBuild\Bench\Console\Commands\FreshId;
+use ArtisanBuild\Bench\Console\Commands\GenerateCodeCoverageHtml;
+use ArtisanBuild\Bench\Console\Commands\RunOnceCommand;
+use ArtisanBuild\Bench\Console\Commands\Snowflake;
+use ArtisanBuild\Bench\Console\Commands\StartIssue;
+use ArtisanBuild\Bench\Console\Commands\Ulid;
+use ArtisanBuild\Bench\Console\Commands\UnlinkPackages;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
@@ -12,16 +20,17 @@ class BenchServiceProvider extends PackageServiceProvider
 {
     public function configurePackage(Package $package): void
     {
-        /*
-         * This class is a Package Service Provider
-         *
-         * More info: https://github.com/spatie/laravel-package-tools
-         */
         $package
             ->name('bench')
             ->hasConfigFile()
-            ->hasCommand(BenchCheckoutCommand::class)
-            ->hasCommand(InstallCommand::class)
-            ->hasCommand(TestCommand::class);
+            ->hasCommand(Commit::class)
+            ->hasCommand(FreshCommand::class)
+            ->hasCommand(FreshId::class)
+            ->hasCommand(GenerateCodeCoverageHtml::class)
+            ->hasCommand(RunOnceCommand::class)
+            ->hasCommand(Snowflake::class)
+            ->hasCommand(StartIssue::class)
+            ->hasCommand(Ulid::class)
+            ->hasCommand(UnlinkPackages::class);
     }
 }
