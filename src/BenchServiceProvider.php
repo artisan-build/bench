@@ -8,6 +8,7 @@ use ArtisanBuild\Bench\Console\Commands\Commit;
 use ArtisanBuild\Bench\Console\Commands\FreshCommand;
 use ArtisanBuild\Bench\Console\Commands\FreshId;
 use ArtisanBuild\Bench\Console\Commands\GenerateCodeCoverageHtml;
+use ArtisanBuild\Bench\Console\Commands\RelinkPackages;
 use ArtisanBuild\Bench\Console\Commands\RunOnceCommand;
 use ArtisanBuild\Bench\Console\Commands\Snowflake;
 use ArtisanBuild\Bench\Console\Commands\StartIssue;
@@ -31,6 +32,7 @@ class BenchServiceProvider extends PackageServiceProvider
             ->hasCommand(Snowflake::class)
             ->hasCommand(StartIssue::class)
             ->hasCommand(Ulid::class)
-            ->hasCommand(UnlinkPackages::class);
+            ->hasCommand(UnlinkPackages::class)
+            ->hasCommand(RelinkPackages::class);
     }
 }
