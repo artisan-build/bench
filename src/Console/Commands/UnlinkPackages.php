@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace ArtisanBuild\Bench\Console\Commands;
 
 use Illuminate\Console\Command;
@@ -11,7 +13,7 @@ class UnlinkPackages extends Command
     protected $signature = 'unlink-packages';
     protected $description = 'Unlink any linked packages';
 
-    public function handle()
+    public function handle(): void
     {
         $json = File::json(bench_path('linked.json'));
 
