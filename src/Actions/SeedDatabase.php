@@ -6,7 +6,7 @@ namespace ArtisanBuild\Bench\Actions;
 
 use ArtisanBuild\Hallway\Seeders\ChannelsSeeder;
 use ArtisanBuild\Hallway\Seeders\GatheringsSeeder;
-use ArtisanBuild\Jetstream\Database\Seeders\UsersSeeder;
+use Database\Seeders\UsersSeeder;
 use Illuminate\Support\Facades\Artisan;
 
 class SeedDatabase
