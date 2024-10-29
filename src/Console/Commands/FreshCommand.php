@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace ArtisanBuild\Bench\Console\Commands;
 
+use ArtisanBuild\Bench\Attributes\ChatGPT;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\File;
@@ -45,6 +46,43 @@ class FreshCommand extends Command
             app($action)();
         }
 
+        $this->createDatabasesForParallelTesting();
+
         return self::SUCCESS;
+    }
+
+    private function createDatabasesForParallelTesting(): void
+    {
+        foreach (range(1, $this->getCpuCores()) as $item) {
+            $file = database_path("testing.sqlite_test_{$item}");
+            if (File::exists($file)) {
+                File::delete($file);
+            }
+            File::copy(database_path('testing.sqlite'), $file);
+        }
+    }
+
+
+    #[ChatGPT]
+    private function getCpuCores()
+    {
+        $cores = 1; // Default to 1 core if detection fails
+
+        if ("WIN" === mb_strtoupper(mb_substr(PHP_OS, 0, 3))) {
+            // Windows
+            $process = @popen("wmic cpu get NumberOfCores", "rb");
+            if (false !== $process) {
+                fgets($process); // Skip first line
+                $cores = (int) fgets($process);
+                pclose($process);
+            }
+        } else {
+            // Linux and Mac
+            $command = "DARWIN" === mb_strtoupper(PHP_OS) ? "sysctl -n hw.ncpu" : "nproc";
+            $output = @shell_exec($command);
+            $cores = $output ? (int) $output : 1;
+        }
+
+        return $cores;
     }
 }
