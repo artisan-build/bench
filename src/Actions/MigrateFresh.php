@@ -10,6 +10,6 @@ class MigrateFresh
 {
     public function __invoke(): void
     {
-        Artisan::call('migrate:fresh');
+        Artisan::call('migrate:refresh');
     }
 }
